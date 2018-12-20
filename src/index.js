@@ -38,8 +38,8 @@ app.use(flash());
 
 // routes
 app.use(require('./routes'));
-//app.use(require('./routes/users'));
-//app.use(require('./routes/notes'));
+app.use("/users",require('./routes/users'));
+app.use("/notes",require('./routes/notes'));
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));

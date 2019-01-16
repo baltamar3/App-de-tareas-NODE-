@@ -1,7 +1,7 @@
 const express = require('express');
-const exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');// template
 const path = require('path');
-const methodOverride = require('method-override');
+const methodOverride = require('method-override');//Le permite usar verbos HTTP como PUT o DELETE en lugares donde el cliente no lo admite.
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
@@ -38,8 +38,8 @@ app.use(flash());
 
 // routes
 app.use(require('./routes'));
-app.use("/users",require('./routes/users'));
-app.use("/notes",require('./routes/notes'));
+app.use(require('./routes/users'));
+app.use(require('./routes/notes'));
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));

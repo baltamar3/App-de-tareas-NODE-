@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/singin', (req, res) => {
+router.get('/users/singin', (req, res) => {
   res.render('users/singin');
 });
 
-router.get('/singup', (req, res) => {
+router.get('/users/singup', (req, res) => {
   res.render('users/singup');
 });
 

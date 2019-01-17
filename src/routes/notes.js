@@ -30,10 +30,21 @@ router.post("/notes/new-note",async(req,res)=>{
 })
 
 router.get("/notes", async(req,res)=>{
-  const notes= await Note.find();
-  console.log(notes);
+  const notes= await Note.find().sort({date: 'desc'})
+  //console.log(notes);
   res.render("notes/all-notes", { notes })
 })
 
+router.get("/notes/edit/:id",(req,res)=>{
+  
+})
+
+
+router.get("/notes/delete/:id", async(req,res)=>{
+  const id= req.params.id
+  await Note.findByIdAndRemove(id)
+  res.render("notes/all-notes")
+  console.log("Delete success")
+})
 
 module.exports = router

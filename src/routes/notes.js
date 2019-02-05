@@ -35,15 +35,29 @@ router.get("/notes", async(req,res)=>{
   res.render("notes/all-notes", { notes })
 })
 
-router.get("/notes/edit/:id",(req,res)=>{
-  
+//Edit
+router.get("/notes/edit/:id",async(req,res)=>{
+  const {id}= req.params
+  const note= await Note.findById(id);
+  //console.log(description);
+  res.render("notes/edit-note",{ note })
+})
+
+router.post("/notes/edit/:id",async(req,res)=>{
+  const {id}= req.params
+  const {title, description}= req.body
+  //console.log(description);
+  await Note.findByIdAndUpdate(id,{title,description})
+  res.redirect("/notes")
 })
 
 
+
+//DELETE
 router.get("/notes/delete/:id", async(req,res)=>{
   const id= req.params.id
-  await Note.findByIdAndRemove(id)
-  res.render("notes/all-notes")
+  await Note.findByIdAndDelete(id)
+  res.redirect("/notes")
   console.log("Delete success")
 })
 
